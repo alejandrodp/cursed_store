@@ -1,15 +1,42 @@
-<form>
+<script>
+    $(document).ready(function() {
+       $('#submit').click(function() {          
+         var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+               'Producto creado' +
+               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+         $("p").html(msg);
+         $("#product_form").get(0).reset();
+       });
+
+    });
+</script>
+
+<form id="product_form">
+  <p>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">ID</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div> 
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+    <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div> 
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Precio</label>
+    <input  class="form-control" id="exampleInputPassword1">
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Marca</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <select  class="form-control" id="">
+      <option value="Eazzy">Eazzy</option>
+      <option value="Eazzy">Talane</option>
+      <option value="Eazzy">Yata</option>
+      <option value="Eazzy">Quimba</option>
+      <option value="Eazzy">Roombo</option>
+      <option value="Eazzy">...</option>
+    </select>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Precio</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <button type="submit" class="btn btn-primary">Crear</button>
+  <button type="button" id="submit" class="btn btn-primary">Crear</button>
 </form>

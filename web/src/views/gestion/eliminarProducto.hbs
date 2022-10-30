@@ -1,7 +1,52 @@
-<form>
+<script>
+    $(document).ready(function() {
+      $("#step2").get(0).hidden = true;
+       $('#submit1').click(function() {          
+         var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+               'Se encontraron los siguientes productos, al presionar uno, será eliminado' +
+               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+         $("p").html(msg);
+         $("#step1").get(0).hidden = true;
+         $("#step2").get(0).hidden = false;
+         $("#product_form").get(0).reset();
+       });
+
+    });
+
+
+    $(document).ready(function() {
+       $('#submit2').click(function() {          
+         var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+               'Producto eliminado' +
+               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+         $("p").html(msg);
+         $("#step1").get(0).hidden = false;
+         $("#step2").get(0).hidden = true;
+         $("#product_form").get(0).reset();
+       });
+
+    });
+</script>
+
+
+<form id="product_form">
+<p>
+  <div id="step1">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Id del producto</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
-  <button type="submit" class="btn btn-primary">Eliminar</button>
+  <button id="submit1" type="button" class="btn btn-primary">Buscar</button>
+</div>
+<div id="step2">
+<div class="m-3">
+   <div class="mb-3">
+    <button class="form-control" type="button" id="submit2" aria-describedby="emailHelp">Soup - French Onion, Dry</button>
+    <button class="form-control" type="button" id="submit2" aria-describedby="emailHelp">Soup - Clam Chowder, Dry Mix</button>
+    <button class="form-control" type="button" id="submit2" aria-describedby="emailHelp">Soup - Tomato Mush. Florentin</button>
+  </div>
+</div>
+</div>
 </form>
