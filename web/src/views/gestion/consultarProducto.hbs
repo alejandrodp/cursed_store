@@ -1,17 +1,149 @@
-<form>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
+$base-spacing-unit: 24px;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+$color-alpha: #1772FF;
+$color-form-highlight: #EEEEEE;
+
+*, *:before, *:after {
+	box-sizing:border-box;
+}
+
+body {
+	padding:$base-spacing-unit;
+	font-family:'Source Sans Pro', sans-serif;
+	margin:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin:0;
+}
+
+.container {
+}
+
+.table {
+  margin: 1em;
+	width:100%;
+	border:1px solid $color-form-highlight;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:#000;
+	padding:($half-spacing-unit * 1.5) 0;
+}
+
+.table-row {
+	display:flex;
+	width:100%;
+	padding:($half-spacing-unit * 1.5) 0;
+	
+	&:nth-of-type(odd) {
+		background:$color-form-highlight;
+	}
+}
+
+.table-data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+}
+
+.header__item {
+	text-transform:uppercase;
+}
+
+.filter__link {
+	color:white;
+	text-decoration: none;
+	position:relative;table
+	display:inline-block;
+	padding-left:$base-spacing-unit;
+	padding-right:$base-spacing-unit;
+	
+	&::after {
+		content:'';
+		position:absolute;
+		right:-($half-spacing-unit * 1.5);
+		color:white;
+		font-size:$half-spacing-unit;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	&.desc::after {
+		content: '(desc)';
+	}
+
+	&.asc::after {
+		content: '(asc)';
+	}
+	
+}
+</style>
+
+
+<script>
+    $(document).ready(function() {
+      $("#step2").get(0).hidden = true;
+       $('#submit').click(function() {          
+         var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+               'Los siguientes productos fueron encontrados' +
+               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+         $("p").html(msg);
+        $("#step2").get(0).hidden = false;
+         $("#clients_form").get(0).reset();
+       });
+
+    });
+</script>
+
+<form>
+  <p>
+<div id="step1">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Id del producto</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
-  <button type="submit" class="btn btn-primary">Consultar</button>
+  <button type="button" id="submit" class="btn btn-primary">Consultar</button>
 
-  </div>
+</div>
+</div>
 
-<p><div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Producto</div>
-  <div class="card-body">
-    <p class="card-text"></p>
-  </div>
+
+<div id="step2" class="container">
+	
+	<div class="table">
+		<div class="table-header">
+			<div class="header__item"><a id="name" class="filter__link" href="#">ID</a></div>
+			<div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Nombre</a></div>
+			<div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Marca</a></div>
+			<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Precio</a></div>
+		</div>
+		<div class="table-content">	
+			<div class="table-row">		
+				<div class="table-data">6</div>
+				<div class="table-data">Soup - French Onion, Dry</div>
+				<div class="table-data">Jaxnation</div>
+				<div class="table-data">218</div>
+			</div>
+			<div class="table-row">
+				<div class="table-data">16</div>
+				<div class="table-data">Soup - Clam Chowder, Dry Mix</div>
+				<div class="table-data">Demimbu</div>
+				<div class="table-data">611</div>
+			</div>
+			<div class="table-row">
+				<div class="table-data">55</div>
+				<div class="table-data">Soup - Tomato Mush. Florentine</div>
+				<div class="table-data">Skim</div>
+				<div class="table-data">1000</div>
+			</div>
+		</div>	
+	</div>
 </div>
 </form>
