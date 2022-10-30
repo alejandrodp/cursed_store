@@ -1,0 +1,48 @@
+<script>
+    $(document).ready(function() {
+       $('#submit').click(function() {
+          $.ajax({
+             type: "DELETE",
+             url: "http://localhost:5000/clientes",
+             data: $("#clients_form").serialize(),
+             success: function(msg, textStatus, xhr) {
+                var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                        'Cliente eliminado' +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+                 $("p").html(msg);
+                 $("#clients_form").get(0).reset();
+             },
+             error: function(xhr, textStatus, error) {
+                 var err = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                 if (xhr.responseText === "ERROR_PARAMS"){
+                    err += "Error en los parámetros ingresados";
+                 } else if (xhr.responseText === "NO_EXISTE"){
+                    err += "El cliente solicitado no existe";
+                 } else if (xhr.responseText === "DESCONOCIDO"){
+                    err += "Error interno del servidor";
+                 } else {
+                     err += "Error desconocido";
+                 }
+
+                 err += '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+                 $("p").html(err);
+             }
+          });
+
+       });
+
+    });
+</script>
+
+<p></p>
+
+<form id="clients_form">
+  <div class="mb-3">
+    <label class="form-label">Cédula del cliente</label>
+    <input type="text" class="form-control" id="id" name="id">
+  </div>
+  <button type="button" id="submit" class="btn btn-primary">Eliminar</button>
+
+</form>

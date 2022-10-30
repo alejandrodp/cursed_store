@@ -1,0 +1,57 @@
+
+<script>
+    $(document).ready(function() {
+       $('#submit').click(function() {
+          $.ajax({
+             type: "POST",
+             url: "http://localhost:5000/clientes",
+             data: $("#clients_form").serialize(),
+             success: function(msg, textStatus, xhr) {
+                var msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">' +
+                        'Cliente creado' +
+                        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+                 $("p").html(msg);
+                 $("#clients_form").get(0).reset();
+             },
+             error: function(xhr, textStatus, error) {
+                 var err = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                 if (xhr.responseText === "ERROR_PARAMS"){
+                    err += "Error en los parámetros ingresados";
+                 } else if (xhr.responseText === "DUPLICADO"){
+                    err += "La cédula ingresada le pertenece a otro cliente";
+                 } else if (xhr.responseText === "DESCONOCIDO"){
+                    err += "Error interno del servidor";
+                 } else {
+                     err += "Error desconocido";
+                 }
+
+                 err += '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+                 $("p").html(err);
+             }
+          });
+
+       });
+
+    });
+</script>
+
+<p></p>
+
+<form id="clients_form" method="POST">
+  <div class="mb-3">
+    <label class="form-label">Cédula</label>
+    <input type="text" class="form-control" id="id" name="id">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Nombre</label>
+    <input type="text" class="form-control" id="first_name" name="first_name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Primer Apellido</label>
+    <input type="text" class="form-control" id="last_name" name="last_name">
+  </div>
+  <button type="button" id="submit" class="btn btn-primary">Crear</button>
+
+</form>

@@ -1,0 +1,69 @@
+<script>
+    $(document).ready(function() {
+       $('#submit').click(function() {
+          $.ajax({
+              type: "GET",
+              url: "http://localhost:5000/clientes",
+             data: $("#clients_form").serialize(),
+             dataType: 'json',
+             success: function(data, textStatus, xhr) {
+                 $("#tb_id").text(data["id"]);
+                 $("#tb_first_name").text(data["id"]);
+                 $("#tb_last_name").text(data["id"]);
+                 $("#clients_form").get(0).reset();
+             },
+             error: function(xhr, textStatus, error) {
+                 var err = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                 if (xhr.responseText === "ERROR_PARAMS"){
+                    err += "Error en los parámetros ingresados";
+                 } else if (xhr.responseText === "NO_EXISTE"){
+                    err += "El cliente solicitado no existe";
+                 } else if (xhr.responseText === "DESCONOCIDO"){
+                    err += "Error interno del servidor";
+                 } else {
+                     err += "Error desconocido";
+                 }
+
+                 err += '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+                 $("p").html(err);
+             }
+          });
+
+       });
+
+    });
+</script>
+
+<p></p>
+
+<form id="clients_form">
+  <div class="mb-3">
+    <label class="form-label">Cédula del cliente</label>
+    <input type="text" class="form-control" id="id" name="id">
+  </div>
+  <button type="button" id="submit" class="btn btn-primary">Consultar</button>
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="tb_id"></td>
+      <td id="tb_first_name"></td>
+      <td id="tb_last_name"></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
