@@ -1,6 +1,137 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4"></h1>
-    <p class="lead"></p>
-  </div>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+$base-spacing-unit: 24px;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+$color-alpha: #1772FF;
+$color-form-highlight: #EEEEEE;
+
+*, *:before, *:after {
+	box-sizing:border-box;
+}
+
+body {
+	padding:$base-spacing-unit;
+	font-family:'Source Sans Pro', sans-serif;
+	margin:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin:0;
+}
+
+.container {
+}
+
+.table {
+  margin: 1em;
+	width:100%;
+	border:1px solid $color-form-highlight;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:#000;
+	padding:($half-spacing-unit * 1.5) 0;
+}
+
+.table-row {
+	display:flex;
+	width:100%;
+	padding:($half-spacing-unit * 1.5) 0;
+	
+	&:nth-of-type(odd) {
+		background:$color-form-highlight;
+	}
+}
+
+.table-data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+}
+
+.header__item {
+	text-transform:uppercase;
+}
+
+.filter__link {
+	color:white;
+	text-decoration: none;
+	position:relative;table
+	display:inline-block;
+	padding-left:$base-spacing-unit;
+	padding-right:$base-spacing-unit;
+	
+	&::after {
+		content:'';
+		position:absolute;
+		right:-($half-spacing-unit * 1.5);
+		color:white;
+		font-size:$half-spacing-unit;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	&.desc::after {
+		content: '(desc)';
+	}
+
+	&.asc::after {
+		content: '(asc)';
+	}
+	
+}
+</style>
+
+<div class="container">
+	<h2 style="color: white; margin-bottom: 2rem;">Top 5 clientes con más compras</h2>
+	<div class="table">
+		<div class="table-header">
+			<div class="header__item"><a id="name" class="filter__link" href="#">Ranking</a></div>
+			<div class="header__item"><a id="name" class="filter__link" href="#">Cliente ID</a></div>
+			<div class="header__item"><a id="name" class="filter__link" href="#">Cantidad</a></div>
+			<div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Nombre</a></div>
+			<div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Apellido</a></div>
+		</div>
+		<div class="table-content">	
+			<div class="table-row">		
+				<div class="table-data">1</div>
+				<div class="table-data">23</div>
+				<div class="table-data">41</div>
+				<div class="table-data">Joana</div>
+				<div class="table-data">Fobidged</div>
+			</div>
+
+			<div class="table-row">		
+				<div class="table-data">2</div>
+				<div class="table-data">19</div>
+				<div class="table-data">36</div>
+				<div class="table-data">Abelard</div>
+				<div class="table-data">Willis</div>
+			</div>
+			<div class="table-row">		
+				<div class="table-data">3</div>
+				<div class="table-data">24</div>
+				<div class="table-data">33</div>
+				<div class="table-data">Sibylle</div>
+				<div class="table-data">Allchorn</div>
+			</div>
+			<div class="table-row">		
+				<div class="table-data">4</div>
+				<div class="table-data">20</div>
+				<div class="table-data">31</div>
+				<div class="table-data">Priscella</div>
+				<div class="table-data">Neill</div>
+			</div>
+			<div class="table-row">		
+				<div class="table-data">5</div>
+				<div class="table-data">2</div>
+				<div class="table-data">30</div>
+				<div class="table-data">Marchall</div>
+				<div class="table-data">Chinery</div>
+			</div>
+		</div>	
+	</div>
 </div>
